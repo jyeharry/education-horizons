@@ -1,21 +1,16 @@
-import styled from 'styled-components'
+import styled  from 'styled-components'
+import { shuffle } from 'lodash'
 
-interface RGB {
+interface ColourBoxProps {
   red: number
   green: number
   blue: number
 }
 
-interface ColourBoxProps extends RGB {}
-
-interface Cache {
-  [k: string]: { red: number; green: number; blue: number }
-}
-
-const ColourBox = styled.div.attrs<ColourBoxProps>(({red, green, blue}) => ({
+const ColourBox = styled.div.attrs<ColourBoxProps>(({ red, green, blue }) => ({
   style: {
-    backgroundColor: `rgb(${red}, ${green}, ${blue})`
-  }
+    backgroundColor: `rgb(${red}, ${green}, ${blue})`,
+  },
 }))<ColourBoxProps>`
   height: 30px;
   width: 30px;
@@ -23,23 +18,21 @@ const ColourBox = styled.div.attrs<ColourBoxProps>(({red, green, blue}) => ({
 `
 
 function App() {
-  const values: RGB[] = []
-  for (let red = 7; red <= 255; red += 8) {
-    for (let green = 7; green <= 255; green += 8) {
-      for (let blue = 7; blue <= 255; blue += 8) {
-        values.push({red, green, blue})
-      }
-    }
-  }
-
+  const values: JSX.Element[] = []
+  let counter = 0
+  const data = Array.from({ length: 32 }).map((_, i) => i * 8 + 7)
+  data.forEach((red) => {
+    data.forEach((green) => {
+      data.forEach((blue) => {
+        values.push(
+          <ColourBox red={red} green={green} blue={blue} key={counter++} />,
+        )
+      })
+    })
+  })
   return (
     <>
-      {values.map(({red, green, blue}, i) => {
-        return (
-          <ColourBox red={red} green={green} blue={blue} key={i}>
-          </ColourBox>
-        )
-      })}
+      {shuffle(values)}
     </>
   )
 }
