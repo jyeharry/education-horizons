@@ -1,46 +1,31 @@
-# Getting Started with Create React App
+# Education Horizons Coding Challenge
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Thought process
 
-In the project directory, you can run:
+To get the 32768 unique colours was simple, I just had to create three nested loops (one for each colour) which each iterated from 7 to 255, incrementing by 8 each time and therefore splitting the three colours into 32 steps. I then added each combination to an array. 
 
-### `npm start`
+This gives the app a Big O complexity of O(n^3) which is pretty slow, but as I was essentially creating a cartesian product this was really my only option.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+I then shuffled the array using lodash before rendering it because I thought it looked ugly having each colour render in the order they were made.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Getting started
 
-### `npm test`
+To get started, run `npm install` to install dependencies then run `npm start` to boot up the app.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+It should automatically open your browser but if it doesn't, open your browser and navigate to `localhost:3000` (make sure no other apps are running on this port)
 
-### `npm run build`
+## Testing
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+I wrote a simple test that checks if there are the correct number of colours on the page and no duplicates.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To run this test, enter `npm test` at the commandline.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Dependencies
 
-### `npm run eject`
+This project was built using:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- ReactJS v18 with TypeScript v4
+- lodash
+- styled-components
